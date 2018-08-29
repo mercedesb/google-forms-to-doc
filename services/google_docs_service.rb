@@ -33,4 +33,12 @@ class GoogleDocsService < BaseGoogleService
   def copy(doc_id, name)
     @service.copy_file(doc_id, Google::Apis::DriveV3::File.new(name: name))
   end
+
+  def export(doc_id)
+    @service.export_file(doc_id, "text/plain", download_dest: StringIO.new)
+  end
+
+  def update(doc_id, text_content)
+    @service.update_file(doc_id, nil, { upload_source: StringIO.new(text_content) })
+  end
 end
