@@ -15,13 +15,12 @@ require './services/google_docs_service.rb'
 
 # copy template document
 docs_svc = GoogleDocsService.new
-# doc_id = "1grbhjk5nGN6N-NeGoO8dD_1aQ0Ui_sw4iWDi8uHKuNA"
-# new_file_name = "new file"
-# response = docs_svc.copy(doc_id, new_file_name)
+doc_id = "1grbhjk5nGN6N-NeGoO8dD_1aQ0Ui_sw4iWDi8uHKuNA"
+new_file_name = "new file"
+response = docs_svc.copy(doc_id, new_file_name)
 
-new_doc_id = "1OvHLCX2k3pC2VqYAQm5U0OphGM5NyOGgvv-_XdvouAs"
+new_doc_id = response.id #"1OvHLCX2k3pC2VqYAQm5U0OphGM5NyOGgvv-_XdvouAs"
 response = docs_svc.export(new_doc_id)
-response.pos = 0
 new_content = response.string
 new_content = new_content.gsub('[COLUMNB]', "b column test").gsub('[COLUMNC]', "c column test").gsub('[COLUMND]', "d column test")
 docs_svc.update(new_doc_id, new_content)

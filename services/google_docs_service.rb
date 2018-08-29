@@ -35,7 +35,7 @@ class GoogleDocsService < BaseGoogleService
   end
 
   def export(doc_id)
-    @service.export_file(doc_id, "text/plain", download_dest: StringIO.new)
+    @service.export_file(doc_id, "text/html", download_dest: StringIO.new)
   end
 
   def update(doc_id, text_content)
